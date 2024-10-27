@@ -2,7 +2,7 @@ import player from './data';
 import element from './dom';
 import { currentEnemy, generateEnemy } from './enemies';
 import './style.css';
-import { difficulty, name } from './levels'
+import { difficulty, isLevelFinished, name } from './levels'
 
 element("attackButton").onclick = () => {
     currentEnemy.health -= 0.1 // will calculate actual damage soon:tm:
@@ -25,7 +25,7 @@ const TPS = 20;
 
 // game loop
 setInterval(() => {
-    if (currentEnemy.health <= 0.0001) generateEnemy();
+    if (currentEnemy.health <= 0.0001 && !isLevelFinished()) generateEnemy();
     renegeratePlayer()
 }, 1000 / TPS);
 

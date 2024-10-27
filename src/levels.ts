@@ -12,7 +12,7 @@ export const name = ['Tutorial', '', '']
 let levelEnemies = Math.ceil(player.level/10) - 1
 
 //i might change the implementation later, dont judge me for now
-function isLevelFinished(): boolean | undefined {
+export function isLevelFinished(): boolean | undefined {
     if(enemiesKilled - levelEnemies === 0) {
         return true
     }
