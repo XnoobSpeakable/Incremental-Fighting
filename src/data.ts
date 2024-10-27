@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Decimal from "break_eternity.js";
 
 const player = {
