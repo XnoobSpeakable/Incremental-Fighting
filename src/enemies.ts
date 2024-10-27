@@ -37,7 +37,6 @@ export function generateEnemy() {
         weaponMultiplier: 1 
     }
     enemiesKilled++;
-    element("testing").textContent = enemiesKilled.toString() + "test"
     clearInterval(enemyAttackInterval)
     enemyAttackInterval = setInterval(() => {
         enemyAttack();

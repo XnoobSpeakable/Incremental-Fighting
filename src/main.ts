@@ -27,6 +27,11 @@ const TPS = 20;
 setInterval(() => {
     if (currentEnemy.health <= 0.0001 && !isLevelFinished()) generateEnemy();
     renegeratePlayer()
+    if(isLevelFinished()) {
+        element("levelUp").removeAttribute("disabled");
+    } else {
+        element("levelUp").setAttribute("disabled", "disabled");
+    }
 }, 1000 / TPS);
 
 // update loop
