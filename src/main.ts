@@ -29,8 +29,10 @@ setInterval(() => {
     renegeratePlayer()
     if(isLevelFinished()) {
         element("levelUp").removeAttribute("disabled");
+        element("h").textContent = "enabled"
     } else {
         element("levelUp").setAttribute("disabled", "disabled");
+        element("h").textContent = "disabled"
     }
 }, 1000 / TPS);
 

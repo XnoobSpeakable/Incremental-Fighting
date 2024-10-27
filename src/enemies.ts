@@ -1,5 +1,4 @@
 import player from "./data"
-import element from "./dom"
 
 export interface Enemy {
     health: number
@@ -37,8 +36,13 @@ export function generateEnemy() {
         weaponMultiplier: 1 
     }
     enemiesKilled++;
+    console.log("enemieskilled"+enemiesKilled)
     clearInterval(enemyAttackInterval)
     enemyAttackInterval = setInterval(() => {
         enemyAttack();
     }, 1000 * (1 / currentEnemy.attackSpeed));
+}
+
+export function resetKills() {
+    enemiesKilled = 0
 }
