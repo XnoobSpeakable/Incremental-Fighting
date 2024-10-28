@@ -1,4 +1,5 @@
 import player from "./data"
+import { difficulty } from "./levels"
 
 export interface Enemy {
     health: number
@@ -50,14 +51,27 @@ export function unintialiseEnemy() {
     clearInterval(enemyAttackInterval);
 }
 
-export function generateEnemy(): void {
+function RNG(min: number, max: number) {
+    return Math.random() * (max - min) + min;
+}
+
+export function generateEnemyKillless(): void {
+    const newHealth = difficulty[player.level] * RNG(3/4, 4/3)
+    const newAttackSpeed = Math.log10(difficulty[player.level] + 10) * RNG(3/4, 4/3) * 0.45
+    const newAttackAccuracy = Math.max(1, (Math.log10(difficulty[player.level] + 10))/2) * RNG(3/4, 4/3) * 0.55
+    const newBaseStrength = difficulty[player.level] * RNG(3/4, 4/3) * 0.1
+
     currentEnemy = {
-        health: 1,
-        attackSpeed: 0.4,
-        attackAccuracy: 0.55,
-        baseStrength: 0.1,
+        health: newHealth,
+        attackSpeed: newAttackSpeed,
+        attackAccuracy: newAttackAccuracy,
+        baseStrength: newBaseStrength,
         weaponMultiplier: 1 
     }
+}
+
+export function generateEnemy(): void {
+    generateEnemyKillless()
     player.enemiesKilled++;
     initaliseEnemy()
 }
