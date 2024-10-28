@@ -1,8 +1,29 @@
 import player, { load, save } from './data';
 import element from './dom';
-import { currentEnemy, generateEnemy, initaliseEnemy, totalEnemyDamage } from './enemies';
+import { currentEnemy, generateEnemy, initaliseEnemy, totalEnemyDamage, unintialiseEnemy } from './enemies';
 import './style.css';
 import { difficulty, isLevelFinished, levelEnemies, name, die, initaliseLevel } from './levels'
+
+function preTabDisplay(): void {
+    element("fightingTab").style.display = "none"
+    element("trainingTab").style.display = "none"
+    element("inventoryTab").style.display = "none"
+}
+
+function openTab(tab: string): void {
+    preTabDisplay()
+    element(tab+"Tab").style.display = "block"
+    if(tab === "fighting") {
+        initaliseEnemy()
+    } else {
+        unintialiseEnemy()
+    }
+}
+
+
+element("fightingButton").onclick = () => {openTab("fighting")}
+element("trainingButton").onclick = () => {openTab("training")}
+element("inventoryButton").onclick = () => {openTab("inventory")}
 
 element("attackButton").onclick = () => {
     element("attackButton").setAttribute("disabled", "disabled");
@@ -11,7 +32,7 @@ element("attackButton").onclick = () => {
     currentEnemy.health -= totalDamage * guaranteedHits
 
     // chanced hits
-    if (Math.random() < player.attackAccuracy) {
+    if (Math.random() < (player.attackAccuracy-Math.floor(player.attackAccuracy))) {
         currentEnemy.health -= totalDamage
     }
 
@@ -64,7 +85,7 @@ setInterval(() => {
     renegeratePlayer()
     if(isLevelFinished()) {
         element("levelUp").removeAttribute("disabled");
-        currentEnemy.baseStrength = 0
+        unintialiseEnemy()
         element("attackButton").setAttribute("disabled", "disabled");
     } else {
         element("levelUp").setAttribute("disabled", "disabled");
@@ -86,5 +107,7 @@ update();
 load();
 initaliseLevel();
 initaliseEnemy();
+preTabDisplay();
+openTab("fighting");
 
 setInterval(save, 1000);

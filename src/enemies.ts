@@ -23,7 +23,7 @@ export function enemyAttack(): void {
     player.health -= enemyDamage * guaranteedHits
 
     // chanced hits
-    if (Math.random() < currentEnemy.attackAccuracy) {
+    if (Math.random() < (currentEnemy.attackAccuracy-Math.floor(currentEnemy.attackAccuracy))) {
         player.health -= enemyDamage
     }
 
@@ -43,6 +43,11 @@ export function initaliseEnemy() {
         enemyAttack,
         1000 * (1 / currentEnemy.attackSpeed)
     );
+}
+
+export function unintialiseEnemy() {
+    totalEnemyDamage = 0;
+    clearInterval(enemyAttackInterval);
 }
 
 export function generateEnemy(): void {
