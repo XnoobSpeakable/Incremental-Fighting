@@ -70,5 +70,8 @@ button:hover {
     align-items: flex-start;
 }
 
-#levelup-section {
+#version {
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
