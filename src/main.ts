@@ -1,18 +1,30 @@
-import player from './data';
+import player, { load, save } from './data';
 import element from './dom';
-import { currentEnemy, enemiesKilled, generateEnemy, totalEnemyDamage } from './enemies';
+import { currentEnemy, generateEnemy, initaliseEnemy, totalEnemyDamage } from './enemies';
 import './style.css';
-import { difficulty, isLevelFinished, levelEnemies, name } from './levels'
+import { difficulty, isLevelFinished, levelEnemies, name, die, initaliseLevel } from './levels'
 
 element("attackButton").onclick = () => {
-    currentEnemy.health -= 0.1 // will calculate actual damage soon:tm:
+    element("attackButton").setAttribute("disabled", "disabled");
+
+    const guaranteedHits = Math.floor(player.attackAccuracy)
+    currentEnemy.health -= totalDamage * guaranteedHits
+
+    // chanced hits
+    if (Math.random() < player.attackAccuracy) {
+        currentEnemy.health -= totalDamage
+    }
+
+    setTimeout(() => {
+        element("attackButton").removeAttribute("disabled");
+    }, 1000 / player.attackSpeed);
 }
 
-function renegeratePlayer() {
-    if (player.health < player.maxHealth) player.health += 0.001
+function renegeratePlayer(): void {
+    if (player.health < player.maxHealth) player.health += 0.001 // will calculate actual regen soon
 }
 
-function updateTexts() {
+function updateTexts(): void {
     element("levelDisplay").textContent = `Level ${player.level}`
     element("levelNameDisplay").textContent = name[player.level]
     element("levelDifficultyDisplay").textContent = `Level difficulty: ${difficulty[player.level]}`
@@ -31,7 +43,7 @@ function updateTexts() {
     element("enemyWeaponMultiplierDisplay").textContent = `Enemy Weapon Multiplier: ${currentEnemy.weaponMultiplier.toFixed(2)}`;
     element("enemyTotalDamageDisplay").textContent = `Enemy Base Strength: ${totalEnemyDamage.toFixed(2)}`;
 
-    element("killToll").textContent = `${enemiesKilled}/${levelEnemies} enemies killed`
+    element("killToll").textContent = `${player.enemiesKilled}/${levelEnemies} enemies killed`
 
     if(isLevelFinished()) {
         element("enemyHealthDisplay").textContent = `All enemies killed`;
@@ -53,10 +65,14 @@ setInterval(() => {
     if(isLevelFinished()) {
         element("levelUp").removeAttribute("disabled");
         currentEnemy.baseStrength = 0
+        element("attackButton").setAttribute("disabled", "disabled");
     } else {
         element("levelUp").setAttribute("disabled", "disabled");
     }
     totalDamage = player.baseStrength * player.weaponMultiplier
+    if(player.health <= 0) {
+        die()
+    }
 }, 1000 / TPS);
 
 // update loop
@@ -66,3 +82,9 @@ function update(): void {
 }
 
 update();
+
+load();
+initaliseLevel();
+initaliseEnemy();
+
+setInterval(save, 1000);

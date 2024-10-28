@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Decimal from "break_eternity.js";
 
 const player = {
@@ -11,12 +10,12 @@ const player = {
     settings: {
         ups: 20
     },
-    level: 0
+    level: 0,
+    xp: 0,
+    enemiesKilled: 0
 };
 
-export function save() {
-    
-}
+const gameId = "incrementalfighting_savefile";
 
 /**
  * Recursively merge two objects.
@@ -42,6 +41,17 @@ function deepMerge<T extends object>(source: T, data: T): void {
             }
         } else source[key] = value;
     }
+}
+
+export function save(): void {
+    localStorage.setItem(gameId, JSON.stringify(player));
+}
+
+export function load(): void {
+    const save = localStorage.getItem(gameId);
+    if (save === null) return;
+    const parsed = JSON.parse(save);
+    deepMerge(player, parsed);
 }
 
 export default player;

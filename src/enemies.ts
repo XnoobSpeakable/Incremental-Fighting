@@ -8,45 +8,55 @@ export interface Enemy {
     weaponMultiplier: number
 }
 
-//starts at -1 because on tutorial level an extra phantom enemy is killed to initialize some code
 export let currentEnemy: Enemy = {
-    health: -1,
-    attackSpeed: 0.5,
-    attackAccuracy: 0.6,
+    health: 1,
+    attackSpeed: 0.4,
+    attackAccuracy: 0.55,
     baseStrength: 0.1,
     weaponMultiplier: 1
 }
 
-export function enemyAttack() {
+export function enemyAttack(): void {
     const enemyDamage = currentEnemy.baseStrength * currentEnemy.weaponMultiplier
-    player.health -= enemyDamage
-}
 
-//starts at -1 because on tutorial level an extra phantom enemy is killed to initialize some code
-export let enemiesKilled = -1
+    const guaranteedHits = Math.floor(currentEnemy.attackAccuracy)
+    player.health -= enemyDamage * guaranteedHits
+
+    // chanced hits
+    if (Math.random() < currentEnemy.attackAccuracy) {
+        player.health -= enemyDamage
+    }
+
+}
 
 export let totalEnemyDamage = 0.1
 
-let enemyAttackInterval = setInterval(() => {
-	enemyAttack();
-}, 1000 * (1 / currentEnemy.attackSpeed));
+let enemyAttackInterval = setInterval(
+    enemyAttack,
+    1000 * (1 / currentEnemy.attackSpeed)
+);
 
-export function generateEnemy() {
+export function initaliseEnemy() {
+    totalEnemyDamage = currentEnemy.baseStrength * currentEnemy.weaponMultiplier
+    clearInterval(enemyAttackInterval)
+    enemyAttackInterval = setInterval(
+        enemyAttack,
+        1000 * (1 / currentEnemy.attackSpeed)
+    );
+}
+
+export function generateEnemy(): void {
     currentEnemy = {
         health: 1,
-        attackSpeed: 0.5,
-        attackAccuracy: 0.6,
+        attackSpeed: 0.4,
+        attackAccuracy: 0.55,
         baseStrength: 0.1,
         weaponMultiplier: 1 
     }
-    enemiesKilled++;
-    totalEnemyDamage = currentEnemy.baseStrength * currentEnemy.weaponMultiplier
-    clearInterval(enemyAttackInterval)
-    enemyAttackInterval = setInterval(() => {
-        enemyAttack();
-    }, 1000 * (1 / currentEnemy.attackSpeed));
+    player.enemiesKilled++;
+    initaliseEnemy()
 }
 
-export function resetKills() {
-    enemiesKilled = 0
+export function resetKills(): void {
+    player.enemiesKilled = 0
 }

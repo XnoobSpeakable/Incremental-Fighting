@@ -1,9 +1,9 @@
 const domCache = new Map<string, HTMLElement>();
 
 /**
- * Returns the DOM element with the given id, or throws if it dosen't exist.
+ * Returns the DOM element with the given id, or throws if it doesn't exist.
  * @param id Id of the element to get.
- * @throws {Error} if element with the given {@link id} dosen't exist.
+ * @throws {Error} if element with the given {@link id} doesn't exist.
  */
 export default function element<T extends HTMLElement>(id: string): T {
     const cachedEl = domCache.get(id)
