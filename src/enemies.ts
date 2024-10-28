@@ -36,7 +36,6 @@ export function generateEnemy() {
         weaponMultiplier: 1 
     }
     enemiesKilled++;
-    console.log("enemieskilled"+enemiesKilled)
     clearInterval(enemyAttackInterval)
     enemyAttackInterval = setInterval(() => {
         enemyAttack();

@@ -1,8 +1,8 @@
 import player from './data';
 import element from './dom';
-import { currentEnemy, generateEnemy } from './enemies';
+import { currentEnemy, enemiesKilled, generateEnemy } from './enemies';
 import './style.css';
-import { difficulty, isLevelFinished, name } from './levels'
+import { difficulty, isLevelFinished, levelEnemies, name } from './levels'
 
 element("attackButton").onclick = () => {
     currentEnemy.health -= 0.1 // will calculate actual damage soon:tm:
@@ -25,6 +25,8 @@ function updateTexts() {
     element("totalDamageDisplay").textContent = `Base Strength: ${totalDamage.toFixed(2)}`;
 
 	element("enemyHealthDisplay").textContent = `Enemy Health: ${currentEnemy.health.toFixed(2)}`;
+
+    element("killToll").textContent = `${enemiesKilled}/${levelEnemies} enemies killed`
 }
 
 let totalDamage = 0.1
@@ -36,11 +38,9 @@ setInterval(() => {
     renegeratePlayer()
     if(isLevelFinished()) {
         element("levelUp").removeAttribute("disabled");
-        element("h").textContent = "enabled"
         currentEnemy.baseStrength = 0
     } else {
         element("levelUp").setAttribute("disabled", "disabled");
-        element("h").textContent = "disabled"
     }
     totalDamage = player.baseStrength * player.weaponMultiplier
 }, 1000 / TPS);

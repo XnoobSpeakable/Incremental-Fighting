@@ -6,7 +6,7 @@ export const difficulty = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.5, 
 
 export const name = ['Tutorial', '', '']
 
-let levelEnemies = Math.ceil(player.level/10) + 1
+export let levelEnemies = Math.ceil(player.level/10) + 1
 
 export function isLevelFinished(): boolean {
     if(enemiesKilled - levelEnemies === 0) {
@@ -20,7 +20,6 @@ element("levelUp").onclick = () => {
     if(isLevelFinished()) {
         player.level++
         levelEnemies = Math.ceil(player.level/10) + 1
-        console.log(levelEnemies + "lvl")
         resetKills()
     }
 }
