@@ -8,6 +8,7 @@ export interface Enemy {
     weaponMultiplier: number
 }
 
+//starts at -1 because on tutorial level an extra phantom enemy is killed to initialize some code
 export let currentEnemy: Enemy = {
     health: -1,
     attackSpeed: 0.5,
@@ -21,7 +22,10 @@ export function enemyAttack() {
     player.health -= enemyDamage
 }
 
+//starts at -1 because on tutorial level an extra phantom enemy is killed to initialize some code
 export let enemiesKilled = -1
+
+export let totalEnemyDamage = 0.1
 
 let enemyAttackInterval = setInterval(() => {
 	enemyAttack();
@@ -36,6 +40,7 @@ export function generateEnemy() {
         weaponMultiplier: 1 
     }
     enemiesKilled++;
+    totalEnemyDamage = currentEnemy.baseStrength * currentEnemy.weaponMultiplier
     clearInterval(enemyAttackInterval)
     enemyAttackInterval = setInterval(() => {
         enemyAttack();

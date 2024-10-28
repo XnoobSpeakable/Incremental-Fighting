@@ -9,7 +9,7 @@ export const name = ['Tutorial', '', '']
 export let levelEnemies = Math.ceil(player.level/10) + 1
 
 export function isLevelFinished(): boolean {
-    if(enemiesKilled - levelEnemies === 0) {
+    if(levelEnemies - enemiesKilled <= 0) {
         return true
     } else {
         return false

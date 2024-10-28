@@ -1,6 +1,6 @@
 import player from './data';
 import element from './dom';
-import { currentEnemy, enemiesKilled, generateEnemy } from './enemies';
+import { currentEnemy, enemiesKilled, generateEnemy, totalEnemyDamage } from './enemies';
 import './style.css';
 import { difficulty, isLevelFinished, levelEnemies, name } from './levels'
 
@@ -25,8 +25,22 @@ function updateTexts() {
     element("totalDamageDisplay").textContent = `Base Strength: ${totalDamage.toFixed(2)}`;
 
 	element("enemyHealthDisplay").textContent = `Enemy Health: ${currentEnemy.health.toFixed(2)}`;
+    element("enemyAttackSpeedDisplay").textContent = `Enemy Attack Speed: ${currentEnemy.attackSpeed.toFixed(2)}`;
+    element("enemyAttackAccuracyDisplay").textContent = `Enemy Attack Accuracy: ${(100*currentEnemy.attackAccuracy).toFixed(2)}%`;
+    element("enemyBaseStrengthDisplay").textContent = `Enemy Base Strength: ${currentEnemy.baseStrength.toFixed(2)}`;
+    element("enemyWeaponMultiplierDisplay").textContent = `Enemy Weapon Multiplier: ${currentEnemy.weaponMultiplier.toFixed(2)}`;
+    element("enemyTotalDamageDisplay").textContent = `Enemy Base Strength: ${totalEnemyDamage.toFixed(2)}`;
 
     element("killToll").textContent = `${enemiesKilled}/${levelEnemies} enemies killed`
+
+    if(isLevelFinished()) {
+        element("enemyHealthDisplay").textContent = `All enemies killed`;
+        element("enemyAttackSpeedDisplay").textContent = `All enemies killed`;
+        element("enemyAttackAccuracyDisplay").textContent = `All enemies killed`;
+        element("enemyBaseStrengthDisplay").textContent = `All enemies killed`;
+        element("enemyWeaponMultiplierDisplay").textContent = `All enemies killed`;
+        element("enemyTotalDamageDisplay").textContent = `All enemies killed`;
+    }
 }
 
 let totalDamage = 0.1
