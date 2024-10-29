@@ -21,7 +21,7 @@ export const name = [
 ]*/
 
 export const roomTable: Array<[number, number, string]> = [
-    [0, 1, 'Tutorial'], [1, 1.1, 'The Beginning'], [3, 1.3, ''], [4, 1.4, ''], [5, 1.5, ''],
+    [0, 1, 'Tutorial'], [1, 1.1, 'The Beginning'], [2, 1.2, ''], [3, 1.3, ''], [4, 1.4, ''], [5, 1.5, ''],
     [6, 1.6, ''], [7, 1.7, ''], [8, 1.8, ''], [9, 1.9, ''], [10, 2.5, 'Slight jump in difficulty'],
     [11, 3, ''], [12, 3.5, ''], [13, 4, 'A deadly room'], [14, 4.5, ''], [15, 5, 'The Pentagon'], 
     [16, 5.5, ''], [17, 6, ''], [18, 6.5, ''], [19, 7, ''], [20, 10, 'Larger jump in difficulty'], 
