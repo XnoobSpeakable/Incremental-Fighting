@@ -10,9 +10,10 @@ const player = {
     settings: {
         ups: 20
     },
-    level: 0,
+    room: 0,
     xp: 0,
-    enemiesKilled: 0
+    enemiesKilled: 0,
+    playerLevel: 1
 };
 
 const gameId = "incrementalfighting_savefile";

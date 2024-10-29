@@ -1,5 +1,5 @@
 import player from "./data"
-import { difficulty } from "./levels"
+import { roomTable } from "./rooms"
 
 export interface Enemy {
     health: number
@@ -17,7 +17,7 @@ export let currentEnemy: Enemy = {
     weaponMultiplier: 1
 }
 
-export function enemyAttack(): void {
+export function enemyAttack() {
     const enemyDamage = currentEnemy.baseStrength * currentEnemy.weaponMultiplier
 
     const guaranteedHits = Math.floor(currentEnemy.attackAccuracy)
@@ -51,15 +51,15 @@ export function unintialiseEnemy() {
     clearInterval(enemyAttackInterval);
 }
 
-function RNG(min: number, max: number) {
+function rand(min: number, max: number) {
     return Math.random() * (max - min) + min;
 }
 
-export function generateEnemyKillless(): void {
-    const newHealth = difficulty[player.level] * RNG(3/4, 4/3)
-    const newAttackSpeed = Math.log10(difficulty[player.level] + 10) * RNG(3/4, 4/3) * 0.45
-    const newAttackAccuracy = Math.max(1, (Math.log10(difficulty[player.level] + 10))/2) * RNG(3/4, 4/3) * 0.55
-    const newBaseStrength = difficulty[player.level] * RNG(3/4, 4/3) * 0.1
+export function generateEnemyKillless() {
+    const newHealth = roomTable[player.room][1] * rand(3/4, 4/3)
+    const newAttackSpeed = Math.log10(roomTable[player.room][1] + 10) * rand(3/4, 4/3) * 0.45
+    const newAttackAccuracy = Math.max(1, (Math.log10(roomTable[player.room][1] + 10))/2) * rand(3/4, 4/3) * 0.55
+    const newBaseStrength = roomTable[player.room][1] * rand(3/4, 4/3) * 0.1
 
     currentEnemy = {
         health: newHealth,
@@ -70,12 +70,12 @@ export function generateEnemyKillless(): void {
     }
 }
 
-export function generateEnemy(): void {
+export function generateEnemy() {
     generateEnemyKillless()
     player.enemiesKilled++;
     initaliseEnemy()
 }
 
-export function resetKills(): void {
+export function resetKills() {
     player.enemiesKilled = 0
 }

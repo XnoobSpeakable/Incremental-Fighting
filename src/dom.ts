@@ -5,7 +5,7 @@ const domCache = new Map<string, HTMLElement>();
  * @param id Id of the element to get.
  * @throws {Error} if element with the given {@link id} doesn't exist.
  */
-export default function element<T extends HTMLElement>(id: string): T {
+export default function element<T extends HTMLElement>(id: string) {
     const cachedEl = domCache.get(id)
     if (cachedEl !== undefined) return cachedEl as T;
     const element = document.getElementById(id)
