@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Incremental Fighting</title>
     <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/training.ts"></script>
 </head>
 
 <body>
     <div class="side">
-        <div id="defense-stats" class="centered">
+        <div id="defense-stats" class="centered ">
             <div id="healthDisplay"></div>
             <div id="xpDisplay"></div>
             <div id="lvlDisplay"></div>
@@ -57,12 +58,32 @@
         </div>
     </div>
     <div id="trainingTab">
-        training
+        <div class="flexcenter absolutecentering">
+            <div class="bordered centered">
+                <img src="/src/punchingbag0.png"><br>
+                <button id="hitTrainingButton">Train hits</button>
+                <div id="hitxpDisplay"></div>
+                <div id="hitxpEffectDisplay"></div>
+            </div>
+            <div class="bordered centered">
+                <img src="/src/punchingbag0.png"><br>
+                <button id="speedTrainingButton">Train speed</button>
+                <div id="speedxpDisplay"></div>
+                <div id="speedxpEffectDisplay"></div>
+            </div>
+            <div class="bordered centered">
+                <img src="/src/punchingbag0.png"><br>
+                <button id="defenseTrainingButton">Train defense</button>
+                <div id="defensexpWarning"></div>
+                <div id="defensexpDisplay"></div>
+                <div id="defensexpEffectDisplay"></div>
+            </div>
+        </div>
     </div>
     <div id="inventoryTab">
         inventory
     </div>
-    <div id="version">v. alpha1.3.1</div>
+    <div id="version">v. alpha1.4.0</div>
 </body>
 
 </html>

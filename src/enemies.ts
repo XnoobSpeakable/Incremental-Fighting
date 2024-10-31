@@ -11,7 +11,7 @@ export interface Enemy {
 
 export let currentEnemy: Enemy = {
     health: 1,
-    attackSpeed: 0.4,
+    attackSpeed: 0.5,
     attackAccuracy: 0.55,
     baseStrength: 0.1,
     weaponMultiplier: 1
@@ -57,7 +57,7 @@ function rand(min: number, max: number) {
 
 export function generateEnemyKillless() {
     const newHealth = roomTable[player.room][1] * rand(3/4, 4/3)
-    const newAttackSpeed = Math.log10(roomTable[player.room][1] + 10) * rand(3/4, 4/3) * 0.45
+    const newAttackSpeed = Math.log10(roomTable[player.room][1] + 10) * rand(3/4, 4/3) * 0.5
     const newAttackAccuracy = Math.max(1, (Math.log10(roomTable[player.room][1] + 10))/2) * rand(3/4, 4/3) * 0.55
     const newBaseStrength = roomTable[player.room][1] * rand(3/4, 4/3) * 0.1
 

@@ -3,7 +3,7 @@ import Decimal from "break_eternity.js";
 const player = {
     maxHealth: 1,
     health: 1,
-    attackSpeed: 0.5,
+    attackSpeed: 0.6,
     attackAccuracy: 0.6,
     baseStrength: 0.1,
     weaponMultiplier: 1,
@@ -13,7 +13,11 @@ const player = {
     room: 0,
     xp: 0,
     enemiesKilled: 0,
-    playerLevel: 1
+    playerLevel: 1,
+    hitxp: 0,
+    speedxp: 0,
+    defensexp: 0,
+    punchingBag: 0
 };
 
 const gameId = "incrementalfighting_savefile";
