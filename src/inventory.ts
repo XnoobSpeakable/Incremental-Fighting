@@ -32,7 +32,8 @@ export function updateSlot(slot: number, item: Item) {
     try {
         const slotName = "slot" + slot
         inventory[slotName] = item
-        element(slotName).setAttribute("style", `background-image: url(${item.texture}); background-repeat: no-repeat; background-size: 100% 100%; image-rendering: pixelated;`)    
+        element(slotName).setAttribute("style", `background-image: url(${item.texture}); background-repeat: no-repeat; background-size: 100% 100%; image-rendering: pixelated;`)  
+        element(slotName).textContent = item.displayName  
     }
     catch {
         console.log("updateSlot error: Slot number or item object is messed up somehow, double check your inputs.")
