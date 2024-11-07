@@ -3,7 +3,8 @@
     line-height: 1.5;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.87);
-    background-color: #444444;
+    --background-color: #444444;
+    background-color: var(--background-color);
     --fill: #2a2a2a;
     --fill-active: #2a2a2ab1;
     --stroke: #333333;
@@ -82,4 +83,31 @@ button:hover {
     right: 0; 
     margin-inline: auto; 
     width: fit-content;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: 128px 128px 128px 128px 128px 128px;
+    grid-template-rows: 128px 128px 128px 128px;
+    gap: 5px;
+    background: black;
+    border: 5px solid black;
+}
+
+.gridItem {
+    background: var(--background-color)
+}
+
+#inventoryGrid {
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+}
+
+.inventorySlot {
+    width: 123px;
+    height: 128px;
+    padding-left: 5px;
 }
