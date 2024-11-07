@@ -56,3 +56,4 @@ export function die() {
 }
 
 export const initaliseroom = () => roomEnemies = Math.ceil(player.room / 10) + 1;
+//test from phone
