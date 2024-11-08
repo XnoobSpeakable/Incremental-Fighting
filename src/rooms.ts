@@ -40,7 +40,7 @@ function chancedFind(item: Item) {
     if(Math.random()<(1/item.rarity)) return true
     return false
 }
-//error for now, will fix later
+//error for now, will fix later, also incomplete logic cuz no inventory management functions yet
 function findLoot() {
     for(let item in weapons) chancedFind(item)
 }
