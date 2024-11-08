@@ -28,7 +28,7 @@ const gameId = "incrementalfighting_savefile";
  * other object.
  * @param data The object from which to copy property values.
  */
-function deepMerge<T extends object>(source: T, data: T): void {
+export function deepMerge<T extends object>(source: T, data: T): void {
     for (const key in data) {
         const value = data[key];
         if (

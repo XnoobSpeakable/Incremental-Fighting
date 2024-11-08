@@ -4,6 +4,7 @@ import { currentEnemy, generateEnemy, generateEnemyKillless, initaliseEnemy, tot
 import './style.css';
 import { isroomFinished, roomEnemies, die, initaliseroom, roomTable } from './rooms'
 import { punchingBags } from './training';
+import { invLoad, invSave } from './inventory';
 
 let currentTab = ''
 
@@ -42,7 +43,7 @@ element("attackButton").onclick = () => {
         element("attackButton").removeAttribute("disabled");
     }, 1000 / player.attackSpeed);
 }
-element("cheatButton").onclick = () => { currentEnemy.health -= 545453348384695 }
+
 function renegeratePlayer() {
     if (player.health < player.maxHealth) player.health += 0.001; // will calculate actual regen soon
 }
@@ -141,6 +142,7 @@ function update() {
 }
 
 load();
+invLoad()
 initaliseroom();
 generateEnemyKillless();
 initaliseEnemy();
@@ -150,3 +152,4 @@ openTab("fighting");
 update();
 
 setInterval(save, 1000);
+setInterval(invSave, 1000);

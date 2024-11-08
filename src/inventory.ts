@@ -1,3 +1,4 @@
+import { deepMerge } from "./data"
 import element from "./dom"
 import { Item } from "./items"
 
@@ -21,6 +22,7 @@ const inventory: Record<string, object> = {
     slot17: {},
     slot18: {},
     slot19: {},
+    slot20: {},
     slot21: {},
     slot22: {},
     slot23: {},
@@ -56,6 +58,29 @@ export function gainItem(item: Item) {
         if(JSON.stringify(inventory[slotKey]) === '{}') {
             updateSlotByName(slotKey, item) 
             return
+        }
+    }
+    console.log("inventory is full")
+}
+
+const invId = "incrementalfighting_inventory";
+
+export function invSave(): void {
+    localStorage.setItem(invId, JSON.stringify(inventory));
+}
+
+export function invLoad(): void {
+    const save = localStorage.getItem(invId);
+    if (save === null) return;
+    const parsed = JSON.parse(save);
+    deepMerge(inventory, parsed);
+
+    for(const slotKey in inventory) {
+        if(JSON.stringify(inventory[slotKey]) !== '{}') {
+            const itemObj: object = inventory[slotKey]
+            const item = itemObj as Item
+            element(slotKey).setAttribute("style", `background-image: url(${item.texture}); background-repeat: no-repeat; background-size: 100% 100%; image-rendering: pixelated;`)  
+            element(slotKey).textContent = item.displayName  
         }
     }
 }
