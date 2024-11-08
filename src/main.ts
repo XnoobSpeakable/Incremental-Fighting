@@ -42,7 +42,7 @@ element("attackButton").onclick = () => {
         element("attackButton").removeAttribute("disabled");
     }, 1000 / player.attackSpeed);
 }
-
+element("cheatButton").onclick = () => { currentEnemy.health -= 545453348384695 }
 function renegeratePlayer() {
     if (player.health < player.maxHealth) player.health += 0.001; // will calculate actual regen soon
 }

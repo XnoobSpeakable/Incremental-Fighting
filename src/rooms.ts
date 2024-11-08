@@ -1,7 +1,8 @@
 import player from "./data"
 import element from "./dom"
 import { generateEnemy, resetKills } from "./enemies"
-import { Item, weapons } from "./items"
+import { gainItem } from "./inventory"
+import { Item, otherItems, weapons } from "./items"
 
 /*export const difficulty = [
     1   , 1.1 , 1.2 , 1.3 , 1.4    , // lvl 5
@@ -36,13 +37,13 @@ export const roomTable: Array<[number, number, string]> = [
 
 export let roomEnemies = Math.ceil(player.room / 10) + 1
 
-function chancedFind(item: Item) {
-    if(Math.random()<(1/item.rarity)) return true
-    return false
+export function chancedFind(item: Item) {
+    if(Math.random()<(1/item.rarity)) gainItem(item)
 }
-//error for now, will fix later, also incomplete logic cuz no inventory management functions yet
+
 function findLoot() {
-    for(let item in weapons) chancedFind(item)
+    for(const key in weapons) chancedFind(weapons[key])
+    for(const key  in otherItems) chancedFind(otherItems[key])
 }
 
 // returns true if all enemies in room have been killed
@@ -67,4 +68,3 @@ export function die() {
 }
 
 export const initaliseroom = () => roomEnemies = Math.ceil(player.room / 10) + 1;
-//test from phone

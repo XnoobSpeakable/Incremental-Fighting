@@ -9,13 +9,17 @@ export interface Item {
     rarity: number
 }
 
+export interface ItemsObject {
+    [key: string]: Item;
+}
+
 /* Loot tier explanation:
 tier 0 is called "common" or "basic"
 tier 1 is called "uncommon" or "advanced"
 tier 2 is called "rare" or "highly advanced"
 tier 3 is called "epic" or "elite"
 tier 4 is called "legendary" or "superior elite" */
-export const weapons = {
+export const weapons: ItemsObject = {
     woodenSword: {
         displayName: "Wooden Sword",
         texture: "/src/textures/woodenSword.png",
@@ -98,10 +102,11 @@ export const weapons = {
     },
 }
 
-export const otherItems = {
+export const otherItems: ItemsObject = {
     coin: {
         displayName: "Coin",
         texture: "/src/textures/coin.png",
-        lootTier: 0
+        lootTier: 0,
+        rarity: 2
     }
 }
