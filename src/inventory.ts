@@ -1,5 +1,5 @@
 import element from "./dom"
-import { Item } from "./items"
+import Item from "./items"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const inventory: Record<string, any> = {
@@ -37,5 +37,13 @@ export function updateSlot(slot: number, item: Item) {
     }
     catch {
         console.log("updateSlot error: Slot number or item object is messed up somehow, double check your inputs.")
+    }
+}
+
+export function gainItem(item: Item) {
+    for(let x = 1; x < 25; x++) {
+        if(JSON.stringify(inventory["slot"+x]) === '{} ') {
+
+        }
     }
 }
