@@ -37,13 +37,15 @@ export const roomTable: Array<[number, number, string]> = [
 
 export let roomEnemies = Math.ceil(player.room / 10) + 1
 
-export function chancedFind(item: Item) {
-    if(Math.random()<(1/item.rarity)) gainItem(item)
+const tierLevels = [8, 16, 64, 128, 256]
+
+export function chancedFind(item: Item, tier: number) {
+    if(Math.random()<(1/item.rarity) && player.room >= tierLevels[tier]) gainItem(item)
 }
 
 function findLoot() {
-    for(const key in weapons) chancedFind(weapons[key])
-    for(const key  in otherItems) chancedFind(otherItems[key])
+    for(const key in weapons) chancedFind(weapons[key], weapons[key].lootTier)
+    for(const key  in otherItems) chancedFind(otherItems[key], weapons[key].lootTier)
 }
 
 // returns true if all enemies in room have been killed
