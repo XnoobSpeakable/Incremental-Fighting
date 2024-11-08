@@ -1,6 +1,7 @@
 import player from "./data"
 import element from "./dom"
 import { generateEnemy, resetKills } from "./enemies"
+import { Item, weapons } from "./items"
 
 /*export const difficulty = [
     1   , 1.1 , 1.2 , 1.3 , 1.4    , // lvl 5
@@ -35,6 +36,15 @@ export const roomTable: Array<[number, number, string]> = [
 
 export let roomEnemies = Math.ceil(player.room / 10) + 1
 
+function chancedFind(item: Item) {
+    if(Math.random()<(1/item.rarity)) return true
+    return false
+}
+//error for now, will fix later
+function findLoot() {
+    for(let item in weapons) chancedFind(item)
+}
+
 // returns true if all enemies in room have been killed
 export const isroomFinished = () => roomEnemies - player.enemiesKilled <= 0
 
@@ -45,6 +55,7 @@ element("roomUp").onclick = () => {
     generateEnemy()
     resetKills()
     element("attackButton").removeAttribute("disabled");
+    findLoot()
 }
 
 export function die() {
