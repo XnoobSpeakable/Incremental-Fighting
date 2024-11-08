@@ -6,6 +6,7 @@ export interface Item {
     baseDurability?: number
     cursability?: number
     lootTier: number
+    rarity: number
 }
 
 /* Loot tier explanation:
@@ -22,7 +23,8 @@ export const weapons = {
         speedMulti: 0.95,
         baseDurability: 100,
         cursability: 5,
-        lootTier: 1
+        lootTier: 1,
+        rarity: 4
     },
     copperSword: {
         displayName: "Copper Sword",
@@ -31,7 +33,8 @@ export const weapons = {
         speedMulti: 0.7,
         baseDurability: 200,
         cursability: 16.7752462597,
-        lootTier: 1
+        lootTier: 1,
+        rarity: 9
     },
     ironSword: {
         displayName: "Iron Sword",
@@ -40,7 +43,8 @@ export const weapons = {
         speedMulti: 0.8,
         baseDurability: 300,
         cursability: 16.0128372247,
-        lootTier: 2
+        lootTier: 2,
+        rarity: 25
     },
     stainlessSteelSword: {
         displayName: "Stainless Steel Sword",
@@ -49,7 +53,8 @@ export const weapons = {
         speedMulti: 0.82,
         baseDurability: 400,
         cursability: 15.8444771757,
-        lootTier: 2
+        lootTier: 2,
+        rarity: 45
     },
     titaniumSword: {
         displayName: "Titanium Sword",
@@ -58,7 +63,8 @@ export const weapons = {
         speedMulti: 0.9,
         baseDurability: 800,
         cursability: 15.3765769571,
-        lootTier: 3
+        lootTier: 3,
+        rarity: 100
     },
     obsidianSword: {
         displayName: "Obsidian Sword",
@@ -67,7 +73,8 @@ export const weapons = {
         speedMulti: 0.92,
         baseDurability: 12,
         cursability: -2,
-        lootTier: 3
+        lootTier: 3,
+        rarity: 90
     },
     neutroniumSword: {
         displayName: "Neutronium Sword",
@@ -76,7 +83,8 @@ export const weapons = {
         speedMulti: 0.45,
         baseDurability: 2500,
         cursability: 50,
-        lootTier: 4
+        lootTier: 4,
+        rarity: 2500
     },
     CCFSword: { //compressed curse flux
         displayName: "Compressed Curse Flux Sword",
@@ -85,7 +93,8 @@ export const weapons = {
         speedMulti: 2,
         baseDurability: 500,
         cursability: 500,
-        lootTier: 4
+        lootTier: 4,
+        rarity: 2500
     },
 }
 
